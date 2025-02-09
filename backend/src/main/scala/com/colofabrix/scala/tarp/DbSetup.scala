@@ -43,6 +43,7 @@ object DbSetup:
         .configure
         .dataSource(dbUrl, config.db.user, config.db.password)
         .group(true)
+        .outOfOrder(false)
         .table(config.db.migrationsTable)
         .locations(config.db.migrationsLocations*)
         // .failOnMissingLocations(true)
