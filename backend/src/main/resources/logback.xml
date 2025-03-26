@@ -1,12 +1,13 @@
 <configuration>
-    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
-        <withJansi>true</withJansi>
-        <encoder>
-            <pattern>%d{HH:mm:ss.SSS} [%thread] %highlight(%-5level) %cyan(%logger{24}) -%kvp- %msg %X %n</pattern>
-        </encoder>
-    </appender>
+  <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+    <encoder>
+      <pattern>%d{HH:mm:ss.SSS} [%thread] %highlight(%-5level) %cyan(%logger{36}) -%kvp- %msg %X %n</pattern>
+    </encoder>
+  </appender>
 
-    <root level="TRACE">
-        <appender-ref ref="STDOUT" />
-    </root>
+  <logger name="com.colofabrix.scala" level="INFO"/>
+
+  <root level="OFF">
+    <appender-ref ref="STDOUT" />
+  </root>
 </configuration>

@@ -47,5 +47,5 @@ given ipv4AddressConfigReader: ConfigReader[Ipv4Address] =
   ConfigReader[String].emap { stringIp =>
     Ipv4Address.fromString(stringIp) match
       case Some(ip) => Right(ip)
-      case None       => Left(CannotConvert(stringIp, "Ipv4Address", "Unprocessable IPv4"))
+      case None     => Left(CannotConvert(stringIp, "Ipv4Address", "Unprocessable IPv4"))
   }

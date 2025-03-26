@@ -2,6 +2,7 @@ package com.colofabrix.scala.tarp
 
 import cats.effect.IO
 import cats.implicits.*
+import com.colofabrix.scala.tarp.counter.*
 import com.comcast.ip4s.*
 import org.http4s.ember.server.EmberServerBuilder
 import org.http4s.server.middleware.{ Logger => LoggerMiddleware }
@@ -37,7 +38,11 @@ object HttpSetup:
       .void
 
   private val docsEntpoint =
-    SwaggerInterpreter().fromEndpoints[IO](List.empty, "Backend - TARP Stack", "1.0")
+    SwaggerInterpreter().fromEndpoints[IO](
+      CounterHttp.endpoints,
+      "Backend - TARP Stack",
+      "1.0",
+    )
 
   private val allRoutes =
     val loggerMiddleware =
@@ -50,4 +55,5 @@ object HttpSetup:
         )
         .apply(_)
 
-    loggerMiddleware(Http4sServerInterpreter[IO]().toRoutes(docsEntpoint))
+    Http4sServerInterpreter[IO]().toRoutes(docsEntpoint) <+>
+      loggerMiddleware(CounterHttp.routes)
