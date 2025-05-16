@@ -1,13 +1,13 @@
 <configuration>
   <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
     <encoder>
-      <pattern>%d{HH:mm:ss.SSS} [%thread] %highlight(%-5level) %cyan(%logger{36}) -%kvp- %msg %X %n</pattern>
+      <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %cyan(%logger{36}) - %msg %X %n</pattern>
     </encoder>
   </appender>
 
   <logger name="com.colofabrix.scala" level="INFO"/>
 
-  <root level="OFF">
+  <root level="WARN">
     <appender-ref ref="STDOUT" />
   </root>
 </configuration>

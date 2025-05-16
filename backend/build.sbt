@@ -11,6 +11,10 @@ Global / tpolecatExcludeOptions ++=
     ScalacOptions.warnUnusedLocals,
   )
 
+// Configure SBT's log handling for forked processes
+Global / run / outputStrategy := Some(StdoutOutput)
+Global / run / connectInput := true
+
 Compile / compile / wartremoverErrors ++= Warts.unsafe
 Compile / compile / wartremoverErrors -= Wart.Any // The code keeps failing on string interpolations
 
