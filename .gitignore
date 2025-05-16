@@ -2,7 +2,6 @@
 .DS_Store
 
 # sbt specific
-dist/*
 target/
 lib_managed/
 src_managed/
@@ -32,6 +31,7 @@ metals.sbt
 /.worksheet/
 
 # Node.js
+dist/*
 node_modules
 package-lock.json
 

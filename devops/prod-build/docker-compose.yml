@@ -1,0 +1,44 @@
+version: '3.8'
+
+services:
+  # Database service
+  database:
+    image: postgres:16.2
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_PASSWORD=tarp
+      - POSTGRES_USER=tarp
+      - POSTGRES_DB=tarp
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - tarp_network
+    restart: unless-stopped
+
+  # Application service
+  app:
+    image: ColOfAbRiX/tarp:latest
+    build:
+      context: ../..  # Root of the project
+      dockerfile: devops/prod-build/Dockerfile
+    ports:
+      - "8080:8080"
+    environment:
+      - TARP_DEV_MODE=false
+      - TARP_DB_HOST=database
+      - TARP_DB_PORT=5432
+    depends_on:
+      - database
+    networks:
+      - tarp_network
+    restart: unless-stopped
+
+# Define a network for the services
+networks:
+  tarp_network:
+    driver: bridge
+
+# Define a volume for persistent database storage
+volumes:
+  postgres_data:
