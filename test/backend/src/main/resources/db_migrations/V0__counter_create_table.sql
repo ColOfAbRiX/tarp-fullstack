@@ -1,4 +1,0 @@
-CREATE TABLE IF NOT EXISTS tarp.counter(
-    id BIGSERIAL PRIMARY KEY,
-    count BIGINT NOT NULL
-);
